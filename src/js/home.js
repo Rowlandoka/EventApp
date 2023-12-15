@@ -2,7 +2,7 @@ import './main';
 import validateRegistrationForm from './services/formValidation/validateRegistrationForm';
 import apiCall from './services/api/apiCall';
 import toastr from 'toastr';
-// import '../../node_modules/toastr/toastr.less';
+import '../../node_modules/toastr/toastr.scss';
 
 class Home {
 	constructor() {
@@ -52,18 +52,18 @@ class Home {
 	}
 
 	submitForm(formValues) {
-		this.$submit.classList.add('hidden');
-		this.$loadingIndicator.classList.remove('hidden');
+		this.$submit.classList.add('invisible');
+		this.$loadingIndicator.classList.remove('invisible');
 		apiCall('registration', formValues, 'POST')
 			.then((response) => {
-				this.$submit.classList.remove('hidden');
-				this.$loadingIndicator.classList.add('hidden');
+				this.$submit.classList.remove('invisible');
+				this.$loadingIndicator.classList.add('invisible');
 				toastr.success(response.message);
 				this.resetForm();
 			})
 			.catch(() => {
-				this.$submit.classList.remove('hidden');
-				this.$loadingIndicator.classList.add('hidden');
+				this.$submit.classList.remove('invisible');
+				this.$loadingIndicator.classList.add('invisible');
 				toastr.error('Error!');
 			});
 	}
